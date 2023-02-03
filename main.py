@@ -8,14 +8,16 @@ from wtforms.validators import DataRequired, URL
 from flask_bootstrap import Bootstrap
 from datetime import date
 from flask_sqlalchemy import SQLAlchemy
+import os
 
-your_email = "inweezy@gmail.com"
-my_email = "lebrimjames.1@gmail.com"
-password = "dqhoepnuqsotssfr"
+your_email = os.environ.get('YOUR_EMAIL')
+my_email = os.environ.get('MY_EMAIL')
+password = os.environ.get('MY_EMAIL_PASSWORD')
+#secret_key = os.environ.get('BLOG_SECRET_KEY')
 post = requests.get(url='https://api.npoint.io/721413adb75035cec088').json()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('BLOG_SECRET_KEY')
 db = SQLAlchemy(app)
 Bootstrap(app)
 
